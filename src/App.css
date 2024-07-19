@@ -1,42 +1,45 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
-}
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
-}
+.container{
+  width: 100%;
+  min-height: 100vh;
+  padding: 10px;
+  background-color: #FA8BFF;
+background-image: linear-gradient(135deg, #FA8BFF 0%, #2BD2FF 52%, #2BFF88 90%);
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
 }
+.todo-app{
+  width: 100%;
+  max-width: 540px;
+  background: #fff;
+  margin: 100px auto 20px;
+  padding: 40px 30px 70px;
+  border-radius: 10px;
+}
+.h1{
+  color: #771565;
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  font-size: larger;
+  font-weight: 700;
+}
+.img{
+  align-items: center;
+  justify-content: center;
+  margin-top: 8px;
+  height:20px ;
+  width: 20px;
+  margin-left: 10px;
+}
+/* .input-containe {
+  display: flex;
+  align-items: center;
+  background-color: lightblue;
+  border-radius: 25px;
+  padding: 10px;
+  
+  width: fit-content;
+} */
 
-.card {
-  padding: 2em;
-}
 
-.read-the-docs {
-  color: #888;
-}
