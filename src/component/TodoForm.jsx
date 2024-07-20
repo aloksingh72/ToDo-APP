@@ -1,17 +1,32 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 
-function TodoForm({ addTodo }) {
-  const [newTodo, setNewTodo] = useState('');
+function TodoForm({ addTodo, editTodo, isEditing, currentTodo }) {
+  const [newTodo, setNewTodo] = useState("");
 
-  const handleInputChange = (event) => {
-    setNewTodo(event.target.value);
-  };
+  // const handleInputChange = (event) => {
+  //   setNewTodo(event.target.value);
+  // };
+  useEffect(() => {
+    if (isEditing && currentTodo) {
+      setNewTodo(currentTodo.text);
+    }
+  }, [isEditing, currentTodo]);
 
   const handleSubmit = (event) => {
     event.preventDefault();
     if (newTodo.trim()) {
-      addTodo(newTodo);
-      setNewTodo('');
+      if (isEditing) {
+        editTodo({
+          ...currentTodo,
+          text: newTodo,
+        });
+      } else {
+        addTodo({
+          text: newTodo,
+          isChecked: false,
+        });
+      }
+      setNewTodo("");
     }
   };
 
@@ -22,10 +37,13 @@ function TodoForm({ addTodo }) {
         value={newTodo}
         placeholder="Enter your text here"
         className="rounded-xl w-[400px] outline-none bg-blue-300 py-2 px-4"
-        onChange={handleInputChange}
+        onChange={(e) => setNewTodo(e.target.value)}
       />
-      <button type="submit" className="absolute rounded-xl px-4 py-2 left-[340px] bg-orange-400">
-        Add
+      <button
+        type="submit"
+        className="absolute rounded-xl px-4 py-2 left-[340px] bg-orange-400"
+      >
+        {isEditing ? "Update" : "Add"}
       </button>
     </form>
   );
