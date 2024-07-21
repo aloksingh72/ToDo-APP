@@ -8,12 +8,12 @@ function TodoForm({ addTodo, editTodo, isEditing, currentTodo }) {
   // const handleInputChange = (event) => {
   //   setNewTodo(event.target.value);
   // };
-  // ---
-  // useEffect(() => {
-  //   if (isEditing && currentTodo) {
-  //     setNewTodo(currentTodo.text);
-  //   }
-  // }, [isEditing, currentTodo]);
+  
+  useEffect(() => {
+    if (isEditing && currentTodo) {
+      setNewTodo(currentTodo.text);
+    }
+  }, [isEditing, currentTodo]);
 
   const handleSubmit = (event) => {
     event.preventDefault();
