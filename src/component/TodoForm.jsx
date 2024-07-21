@@ -1,4 +1,6 @@
 import React, { useState,useEffect } from "react";
+import { ToastContainer, toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 function TodoForm({ addTodo, editTodo, isEditing, currentTodo }) {
   const [newTodo, setNewTodo] = useState("");
@@ -6,11 +8,12 @@ function TodoForm({ addTodo, editTodo, isEditing, currentTodo }) {
   // const handleInputChange = (event) => {
   //   setNewTodo(event.target.value);
   // };
-  useEffect(() => {
-    if (isEditing && currentTodo) {
-      setNewTodo(currentTodo.text);
-    }
-  }, [isEditing, currentTodo]);
+  // ---
+  // useEffect(() => {
+  //   if (isEditing && currentTodo) {
+  //     setNewTodo(currentTodo.text);
+  //   }
+  // }, [isEditing, currentTodo]);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -28,10 +31,14 @@ function TodoForm({ addTodo, editTodo, isEditing, currentTodo }) {
       }
       setNewTodo("");
     }
+    else {
+      toast.error("Please enter text before adding!");
+    }
   };
 
   return (
-    <form onSubmit={handleSubmit} className="relative flex mx-auto mt-1">
+    <>
+     <form onSubmit={handleSubmit} className="relative flex mx-auto mt-1">
       <input
         type="text"
         value={newTodo}
@@ -46,6 +53,10 @@ function TodoForm({ addTodo, editTodo, isEditing, currentTodo }) {
         {isEditing ? "Update" : "Add"}
       </button>
     </form>
+    <ToastContainer/>
+    </>
+   
+    
   );
 }
 

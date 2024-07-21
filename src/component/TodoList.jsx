@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { MdDelete } from "react-icons/md";
 import { MdEdit } from "react-icons/md";
+import { RiDeleteBin5Fill } from "react-icons/ri";
 
 function TodoList({ todos, toggleTodo, deleteHandler, startEditing }) {
   // const [todos,setTodos]=useState([])
@@ -27,8 +28,14 @@ function TodoList({ todos, toggleTodo, deleteHandler, startEditing }) {
       <div className="todolist-items flex flex-col ">
         <ul className="w-full">
           {todos.map((todo, index) => (
-            <li key={index} className={`flex justify-between items-center p-2 border-b ${todo.ischecked ? "line-through" : ""}`}>
+            <li
+              key={index}
+              className={`flex justify-between items-center p-2 border-b ${
+                todo.ischecked ? "line-through" : ""
+              }`}
+            >
               <div className="flex items-center  ">
+                
                 <input
                   type="checkbox"
                   checked={todo.ischecked}
@@ -36,12 +43,18 @@ function TodoList({ todos, toggleTodo, deleteHandler, startEditing }) {
                   className="mr-2"
                 />
                 <span className="w-3/4 ">{todo.text}</span>
-                </div>
-                <div className="flex space-x-4">
-                <MdEdit className="cursor-pointer" onClick={() => startEditing(todo)} />
-                <MdDelete className="cursor-pointer" onClick={() => deleteHandler(index)} />
               </div>
-              
+              <div className="flex space-x-4">
+                <MdEdit
+                  className="cursor-pointer"
+                  onClick={() => startEditing(todo)}
+                />
+
+                <RiDeleteBin5Fill
+                  className="cursor-pointer text-red-600 "
+                  onClick={() => deleteHandler(index)}
+                />
+              </div>
             </li>
           ))}
         </ul>
@@ -51,5 +64,3 @@ function TodoList({ todos, toggleTodo, deleteHandler, startEditing }) {
 }
 
 export default TodoList;
-
- 
