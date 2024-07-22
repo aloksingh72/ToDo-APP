@@ -1,11 +1,21 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./App.css";
 import Header from "./component/Header";
 import TodoForm from "./component/TodoForm";
 import TodoList from "./component/TodoList";
 
+const getLocalValue=()=>{
+  let items=localStorage.getItem('todo');
+  if(items){
+    return JSON.parse(localStorage.getItem('todo'))
+  }
+  else{
+    return[];
+  }
+}
+
 function App() {
-  const [todos, setTodos] = useState([]);
+  const [todos, setTodos] = useState(getLocalValue());
   const [currentTodo, setCurrentTodo] = useState(null);
   const [isEditing, setIsEditing] = useState(false);
 
@@ -44,6 +54,12 @@ function App() {
     setCurrentTodo(todo);
     setIsEditing(true);
   };
+
+useEffect(() => {
+localStorage.setItem('todo', JSON.stringify(todos));
+
+},[todos])
+
 
   return (
     <div className="container">
